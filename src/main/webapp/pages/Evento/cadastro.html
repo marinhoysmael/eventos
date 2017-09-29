@@ -1,0 +1,133 @@
+<div class="page-header">
+	<h1>
+		Novo Evento <small> </small>
+	</h1>
+</div>
+<div class="page-body">
+	<form name="eventoForm">
+		<div class="row">
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Nome</label> 
+					<input ng-model="evento.nome" ng-required="true" type="text" class="form-control" placeholder="Nome do Evento">
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Edição</label> 
+					<input ng-model="evento.edicao" ng-required="true" type="text" class="form-control" placeholder="Edição">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Tema</label> 
+			<input type="text" ng-model="evento.tema" ng-required="true" class="form-control" placeholder="Tema">
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Realização</label> 
+			<input type="text" ng-model="evento.realizacao" ng-required="true" class="form-control" id="" placeholder="Ex. Curso de Administração">
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Data de Início</label> 
+					<input type="date" ng-model="evento.dataInicio" ng-required="true" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Date de Término</label> 
+					<input type="date" ng-model="evento.dataFim" ng-required="true" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Instituição</label> 
+			<input ng-model="evento.instituicao"  ng-required="true" type="text" class="form-control" id="" placeholder="Instituição">
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Representante</label> 
+					<input ng-model="evento.representante" ng-required="true" type="text" class="form-control" id="" placeholder="Pessoa responsável pela organização">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">CPF</label> 
+					<input ng-model="evento.cpfRepresentante" ng-required="true" type="text" class="form-control" id="" placeholder="CPF do representante">
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="page-header">
+			<h1>
+				Local do Evento <small> </small>
+			</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Logradouro</label> 
+					<input ng-model="evento.local.logradouro" ng-required="true" type="text" class="form-control" id="" placeholder="Aveninda, Rua">
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Número</label> 
+					<input ng-model="evento.local.numero" type="text" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Bairro</label> 
+					<input ng-model="evento.local.bairro" ng-required="true" type="text" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Complemento</label> 
+					<input ng-model="evento.local.complemento" type="text" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Referência</label> 
+					<input ng-model="evento.local.referencia" type="text" class="form-control" id="" placeholder="">
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">CEP</label> 
+					<input ng-model="evento.local.cep" ng-required="true" type="text" class="form-control" id="" placeholder="Ex. 99.999-999">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="">Estado</label> 
+					<select class="form-control" ng-required="true" ng-model="evento.local.estado" ng-options="estado.nome for estado in estados | orderBy:'nome'" ng-change='carregarCidades(evento.local.estado)'>
+						<option value=""> Selecione o estado</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Cidade</label> 
+					<select class="form-control" ng-required="true" ng-model="evento.local.cidade" ng-options="cidade.nome for cidade in cidades | orderBy:'nome'">
+						<option value=""> Selecione a cidade do evento</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="acao">
+			<button type="submit" ng-click="salvarEvento(evento)" ng-disabled="eventoForm.$invalid" class="btn btn-primary">Salvar Evento</button>
+		</div>
+	</form>
+</div>

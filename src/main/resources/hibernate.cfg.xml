@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<!-- a SessionFactory instance listed as /jndi/name -->
+	<session-factory name="java:hibernate/SessionFactory">
+
+	<!-- properties -->
+	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		  
+<!-- 	  	####MYSQL CONFIGURACAO LOCAL##### -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/evento</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <property name="connection.username">root</property>
+		<property name="connection.password">root</property> 
+	  
+	  
+	  	<!-- ####MYSQL CONFIGURACAO REMOTA##### -->
+<!--         <property name="connection.url">jdbc:mysql://127.7.238.130:3306/eventos</property> -->
+<!--         <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property> -->
+<!--         <property name="connection.username">admintFrktqY</property> -->
+<!-- 		<property name="connection.password">T3iSHEvGcjzc</property>  -->
+		
+		
+        <property name="show_sql">false</property>
+		<property name="hibernate.current_session_context_class">thread</property>        
+        <property name="hibernate.format_sql">true</property>
+        <property name="connection.pool_size">1</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="hbm2ddl.auto">validate</property>
+		
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<property name="hibernate.connection.provider_class">
+			org.hibernate.connection.C3P0ConnectionProvider
+		</property>
+		<property name="hibernate.c3p0.min_size">1</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">30</property>
+		<property name="hibernate.c3p0.idle_test_period">100</property>
+		
+		
+		
+		
+		<mapping class="br.com.eco.sac.model.Atividade"/>
+		<mapping class="br.com.eco.sac.model.Colaborador"/>
+		<mapping class="br.com.eco.sac.model.Evento"/>
+		<mapping class="br.com.eco.sac.model.Participante"/>
+		<mapping class="br.com.eco.sac.model.TipoInscricao"/>
+		<mapping class="br.com.eco.sac.model.Usuario"/>
+
+
+		<mapping class="br.com.eco.sac.modelo.util.Cidade"/>
+		<mapping class="br.com.eco.sac.modelo.util.Endereco"/>
+		<mapping class="br.com.eco.sac.modelo.util.Estado"/>
+		<mapping class="br.com.eco.sac.modelo.util.RegistroAcesso"/>
+
+		
+		
+    </session-factory>
+
+</hibernate-configuration>

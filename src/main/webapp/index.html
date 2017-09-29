@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="index">
+	<head>
+	<meta charset="utf-8">
+	<title>{{app}}</title>
+	
+	<link rel="stylesheet" type="text/css"	href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css"	href="css/index.css">
+	</head>
+	<body ng-controller="indexCtrl">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="#" class="navbar-brand">Eco</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Histórico de Eventos</a></li>
+						<li><a href="#">Quem Somos</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="page-header">
+			<div class="row show-grid"> 
+				<div class="col-md-8">
+					<h1>
+						{{app}} <small>(tá acontecendo)</small>
+					</h1>
+				</div>
+				<div class="col-md-4 pesquisa">
+					<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="E aí, o que você está buscando?">
+				</div> 
+			</div>
+		</div>
+		
+		<div ng-show="eventos.length > 0">
+			<div class="row eventos">
+				<div ng-repeat="evento in eventos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+					<div class="col-md-4"> 
+						<div class="thumbnail"> 
+							<img style="height: auto; width: 100%; display: block;" src="{{evento.imagem}}" data-holder-rendered="true"> 
+							<div class="caption"> 
+								<h3>{{evento.nome}}</h3> 
+								<h4>{{evento.tema}}</h4> 
+								<p>
+									<a href="#" class="btn btn-primary" role="button">Programação</a>
+									<a href="#" class="btn btn-default" role="button">Inscrição</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<footer class="footer">
+      <div class="container">
+        <span> <a href="AdministracaoAction.dashboard.mtw" type="button">Portal-Admin</a></span> |
+        <span >Copyright © 2017 ECO - Soluções Tecnológicas</span>
+      </div>
+    </footer>
+	<script src=lib/angular/angular.min.js></script>
+	<script src=lib/jquery/jquery.min.js></script>
+	<script src=lib/bootstrap/bootstrap.min.js></script>
+	<script src=js/index.js></script>
+</html>

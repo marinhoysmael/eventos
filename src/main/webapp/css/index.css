@@ -1,0 +1,29 @@
+.page-header{
+	margin-top: 5%;
+}
+
+.container-fluid .navbar-collapse{
+	float: right;
+} 
+
+.pesquisa{
+	padding-top: 26px;
+}
+
+.row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.eventos .col-md-4 {
+    width: 28.333333%;
+}
+
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f8f8f8;
+}

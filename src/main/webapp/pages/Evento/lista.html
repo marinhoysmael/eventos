@@ -1,0 +1,47 @@
+<style>
+	.navbar .input-group{
+		margin: 10px;
+	}
+</style>
+
+<div class="page-header">
+	<h1>
+		Lista de Eventos <small>Visualização do Administrador</small>
+	</h1>
+</div>
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="col-md-10">
+		<div class="input-group">
+			<div class="input-group-btn">
+				<button class="btn btn-default" type="button" title="Arquivar"><span class="glyphicon glyphicon-hdd"></span></button>
+				<button class="btn btn-default" type="button" title="Favoritar"><span class="glyphicon glyphicon-heart"></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Pesquisar..">
+		</div>
+	</div>
+</nav>
+
+<table ng-show="eventos.length > 0"  class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Data de Início</th>
+			<th>Nome</th>
+			<th>Edição</th>
+			<th>Instituição</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="evento in eventos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+			<td><input type="checkbox" ng-model="contato.selecionado"/></td>
+			<td>{{evento.dataInicio.time | date:'dd/MM/yyyy'}}</td>
+			<td>{{evento.nome}}</td>
+			<td>{{evento.instituicao}}</td>
+			<td>{{evento.edicao}}</td>
+		</tr>
+	</tbody>
+</table>
