@@ -46,18 +46,22 @@
 		
 		
 		
-		<mapping class="br.com.eco.sac.model.Atividade"/>
-		<mapping class="br.com.eco.sac.model.Colaborador"/>
-		<mapping class="br.com.eco.sac.model.Evento"/>
-		<mapping class="br.com.eco.sac.model.Participante"/>
-		<mapping class="br.com.eco.sac.model.TipoInscricao"/>
-		<mapping class="br.com.eco.sac.model.Usuario"/>
+		<mapping class="br.com.we.congressus.modelo.Atividade"/>
+		<mapping class="br.com.we.congressus.modelo.Conta"/>
+		<mapping class="br.com.we.congressus.modelo.Evento"/>
+		<mapping class="br.com.we.congressus.modelo.Inscricao"/>
+		<mapping class="br.com.we.congressus.modelo.Instituicao"/>
+<!-- 		<mapping class="br.com.we.congressus.modelo.Login"/> -->
 
+		<mapping class="br.com.we.congressus.modelo.RegraValor"/>
+		<mapping class="br.com.we.congressus.modelo.Usuario"/>
 
-		<mapping class="br.com.eco.sac.modelo.util.Cidade"/>
-		<mapping class="br.com.eco.sac.modelo.util.Endereco"/>
-		<mapping class="br.com.eco.sac.modelo.util.Estado"/>
-		<mapping class="br.com.eco.sac.modelo.util.RegistroAcesso"/>
+		
+		<mapping class="br.com.we.congressus.modelo.util.Cidade"/>
+		<mapping class="br.com.we.congressus.modelo.util.Endereco"/>
+		<mapping class="br.com.we.congressus.modelo.util.Estado"/>
+		
+		<mapping class="br.com.we.congressus.modelo.util.RegistroAcesso"/>
 
 		
 		

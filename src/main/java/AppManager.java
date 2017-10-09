@@ -18,35 +18,32 @@ import org.mentawai.transaction.HibernateTransaction;
 
 import com.google.gson.Gson;
 
-import br.com.eco.sac.action.AdministracaoAction;
-import br.com.eco.sac.action.AtividadeAction;
-import br.com.eco.sac.action.ColaboradorAction;
-import br.com.eco.sac.action.EnderecoAction;
-import br.com.eco.sac.action.EventoAction;
-import br.com.eco.sac.action.LoginAction;
-import br.com.eco.sac.action.ParticipanteAction;
-import br.com.eco.sac.dao.DaoFactory;
-import br.com.eco.sac.daoHbn.DaoFactoryHbn;
-import br.com.eco.sac.filter.RegistroAcessoFilter;
-import br.com.eco.sac.service.AtividadeService;
-import br.com.eco.sac.service.CidadeService;
-import br.com.eco.sac.service.ColaboradorService;
-import br.com.eco.sac.service.EnderecoService;
-import br.com.eco.sac.service.EstadoService;
-import br.com.eco.sac.service.EventoService;
-import br.com.eco.sac.service.InscricaoService;
-import br.com.eco.sac.service.ParticipanteService;
-import br.com.eco.sac.service.UsuarioService;
-import br.com.eco.sac.serviceImpl.AtividadeServiceImpl;
-import br.com.eco.sac.serviceImpl.CidadeServiceImpl;
-import br.com.eco.sac.serviceImpl.ColaboradorServiceImpl;
-import br.com.eco.sac.serviceImpl.EnderecoServiceImpl;
-import br.com.eco.sac.serviceImpl.EstadoServiceImpl;
-import br.com.eco.sac.serviceImpl.EventoServiceImpl;
-import br.com.eco.sac.serviceImpl.InscricaoServiceImpl;
-import br.com.eco.sac.serviceImpl.ParticipanteServiceImpl;
-import br.com.eco.sac.serviceImpl.UsuarioServiceImpl;
-import br.com.eco.sac.util.FirebaseConnection;
+import br.com.we.congressus.action.AdministracaoAction;
+import br.com.we.congressus.action.AtividadeAction;
+import br.com.we.congressus.action.EnderecoAction;
+import br.com.we.congressus.action.EventoAction;
+import br.com.we.congressus.action.LoginAction;
+import br.com.we.congressus.action.UsuarioAction;
+import br.com.we.congressus.dao.DaoFactory;
+import br.com.we.congressus.daoHbn.DaoFactoryHbn;
+import br.com.we.congressus.filter.RegistroAcessoFilter;
+import br.com.we.congressus.service.AtividadeService;
+import br.com.we.congressus.service.CidadeService;
+import br.com.we.congressus.service.ContaService;
+import br.com.we.congressus.service.EnderecoService;
+import br.com.we.congressus.service.EstadoService;
+import br.com.we.congressus.service.EventoService;
+import br.com.we.congressus.service.InscricaoService;
+import br.com.we.congressus.service.UsuarioService;
+import br.com.we.congressus.serviceImpl.AtividadeServiceImpl;
+import br.com.we.congressus.serviceImpl.CidadeServiceImpl;
+import br.com.we.congressus.serviceImpl.ContaServiceImpl;
+import br.com.we.congressus.serviceImpl.EnderecoServiceImpl;
+import br.com.we.congressus.serviceImpl.EstadoServiceImpl;
+import br.com.we.congressus.serviceImpl.EventoServiceImpl;
+import br.com.we.congressus.serviceImpl.InscricaoServiceImpl;
+import br.com.we.congressus.serviceImpl.UsuarioServiceImpl;
+import br.com.we.congressus.util.FirebaseConnection;
 
 public class AppManager extends ApplicationManager{
 	
@@ -112,15 +109,14 @@ public class AppManager extends ApplicationManager{
 		ioc(AtividadeService.class, AtividadeServiceImpl.class);
 		
 		ioc(CidadeService.class, CidadeServiceImpl.class);
-		ioc(ColaboradorService.class, ColaboradorServiceImpl.class);
-
+		ioc(ContaService.class, ContaServiceImpl.class);
+		
 		ioc(EnderecoService.class, EnderecoServiceImpl.class);
 		ioc(EstadoService.class, EstadoServiceImpl.class);
 		ioc(EventoService.class, EventoServiceImpl.class);
 		
 		ioc(InscricaoService.class, InscricaoServiceImpl.class);
 		
-		ioc(ParticipanteService.class, ParticipanteServiceImpl.class);
 		
 		ioc(UsuarioService.class, UsuarioServiceImpl.class);
 
@@ -129,15 +125,13 @@ public class AppManager extends ApplicationManager{
 		di("atividadeService", AtividadeService.class);
 		
 		di("cidadeService", CidadeService.class);
-		di("colaboradorService", ColaboradorService.class);
+		di("contaService", ContaService.class);
 		
 		di("enderecoService", EnderecoService.class);
 		di("estadoService", EstadoService.class);
 		di("eventoService", EventoService.class);
 		
 		di("inscricaoService", InscricaoService.class);
-		
-		di("participanteService", ParticipanteService.class);
 		
 		di("usuarioService", UsuarioService.class);
 		
@@ -174,17 +168,6 @@ public class AppManager extends ApplicationManager{
 			.on(SUCCESS, ajax(new JsonRenderer()));
 		
 		
-		/*=========================
-		 * COLABORADOR
-		 *=========================
-		 */
-		action(ColaboradorAction.class, "cadastro")
-			.on(SUCCESS, fwd("jsp/admin/Colaborador/cadastro.jsp"));
-
-		action(ColaboradorAction.class, "salvar")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(SUCCESS, ajax(new JsonRenderer()));
-		
 		
 		/*=========================
 		 * EVENTO
@@ -212,45 +195,20 @@ public class AppManager extends ApplicationManager{
 		action(EnderecoAction.class, "listarCidades")
 			.on(SUCCESS, ajax(new JsonRenderer()));
 		
+
 		/*=========================
-		 * PARTICIPANTE
+		 * USUARIO
 		 *=========================
 		 */
-		action(ParticipanteAction.class, "gerarCracha")
-		.on(SUCCESS, fwd("jsp/admin/Participante/cracha.jsp"));
+		action(UsuarioAction.class, "cadastro")
+			.on(SUCCESS, fwd("pages/Usuario/cadastro.html"));
+
+		action(UsuarioAction.class, "salvar")
+			.on(SUCCESS, ajax(new JsonRenderer()))
+			.on(ACCESSDENIED, ajax(new JsonRenderer()));
 		
-		action(ParticipanteAction.class, "inscricao")
-			.on(SUCCESS, fwd("jsp/inscricao.jsp"));
-		
-		action(ParticipanteAction.class, "listar")
-			.on(SUCCESS, fwd("jsp/listaInscritos.jsp"));
-		
-		action(ParticipanteAction.class, "salvar")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(SUCCESS, ajax(new JsonRenderer()));
-		
-		
-		action(ParticipanteAction.class, "confimarInscricao")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(SUCCESS, ajax(new JsonRenderer()));
-			
-		action(ParticipanteAction.class, "confimarPagamento")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(SUCCESS, ajax(new JsonRenderer()));
-		
-		action(ParticipanteAction.class, "updateInscricoesPagas")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(SUCCESS, ajax(new JsonRenderer()));
-		
-		action(ParticipanteAction.class, "updateParticipantes")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(SUCCESS, ajax(new JsonRenderer()));
-		
-		action(ParticipanteAction.class, "certificado")
-			.on(ERROR, ajax(new JsonRenderer()))
-			.on(AJAX, ajax(new JsonRenderer()))
-			.on(SUCCESS, fwd("jsp/certificado.jsp"));
-		
+		action(UsuarioAction.class, "dashboard")
+			.on(SUCCESS, fwd("pages/Usuario/dashboard.html"));
 	}
 	
 }

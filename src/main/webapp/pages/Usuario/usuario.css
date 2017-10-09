@@ -1,0 +1,9 @@
+.page-body{
+    display: grid;
+	margin: 0 auto;
+}
+
+.page-body .col-md-6{
+    display: grid;
+	margin: 0 auto;
+}
