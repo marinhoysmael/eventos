@@ -1,6 +1,8 @@
 angular.module("usuario").controller("cadastroController", function ($scope, $filter, usuarioAPI) {
 
 	$scope.app = "Formulário de Cadastro";
+	$scope.errorMessage = "";
+	$scope.hasError = false;
 	
 	$scope.cadastrarUsuario = function(provedor, usuario, confirmarSenha){
 		
@@ -11,6 +13,8 @@ angular.module("usuario").controller("cadastroController", function ($scope, $fi
 				$scope.salvarUsuario(usuario);
 			}else{
 				//TODO: Mostrar mensagem de erro
+				$scope.errorMessage = "Senhas não correspondem";
+				$scope.hasError = true;
 			}
 		}else{
 			var provider = usuarioAPI.getProvider(provedor);
@@ -31,8 +35,19 @@ angular.module("usuario").controller("cadastroController", function ($scope, $fi
 	$scope.salvarUsuario = function(usuario){
 		usuarioAPI.save(usuario)
 		.then(function mySuccess(response) {
+			if(response.data.error){
+				$scope.errorMessage = response.data.userMessage;
+				$scope.hasError = true;
+				
+				$(".alert").fadeTo(2000, 500).slideUp(1000, function(){
+					$scope.hasError = false;
+				});
+			}else{
+				delete $scope.contato;
+				$scope.usuarioForm.$setPristine();
+				window.location.href = 'UsuarioAction.dashboard.mtw';
+			}
 			console.log(response);
-//			window.location.href = 'UsuarioAction.dashboard.mtw';
 		}, function myError(response) {
 			//TODO: Mostrar mensagem de erro
 			console.log(response);

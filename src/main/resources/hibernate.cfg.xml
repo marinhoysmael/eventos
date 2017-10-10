@@ -51,7 +51,6 @@
 		<mapping class="br.com.we.congressus.modelo.Evento"/>
 		<mapping class="br.com.we.congressus.modelo.Inscricao"/>
 		<mapping class="br.com.we.congressus.modelo.Instituicao"/>
-<!-- 		<mapping class="br.com.we.congressus.modelo.Login"/> -->
 
 		<mapping class="br.com.we.congressus.modelo.RegraValor"/>
 		<mapping class="br.com.we.congressus.modelo.Usuario"/>
